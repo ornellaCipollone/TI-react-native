@@ -33,38 +33,38 @@ class MiPerfil extends Component {
                 }
             )
         db.collection('users').where('owner', '==', auth.currentUser.email)
-        .onSnapshot(
-            docs => {
+            .onSnapshot(
+                docs => {
 
-    
-                docs.forEach(doc => {
-                    this.setState({
-                        id: doc.id,
-                        infoUser: doc.data
+
+                    docs.forEach(doc => {
+                        this.setState({
+                            id: doc.id,
+                            infoUser: doc.data
+                        })
                     })
-                })
 
-               
-            }
-        )
+
+                }
+            )
     }
 
 
-signOut(){
-    auth.signOut()
-    this.props.navigation.navigate('Login')
-}
+    signOut() {
+        auth.signOut()
+        this.props.navigation.navigate('Login')
+    }
 
 
     render() {
         return (
             <View>
-                 <View >
+                <View >
                     <Text>Bienvenido {this.state.infoUser.userName}</Text>
                     <Text>Biografía: {this.state.infoUser.bio}</Text>
                     <Text>Mail: {auth.currentUser.email}</Text>
                     <Image source={{ uri: this.state.infoUser.profileImage }} />
-                
+
                 </View>
 
                 <Text>Mis posteos:</Text>

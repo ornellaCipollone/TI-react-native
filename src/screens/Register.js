@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
-import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native'
+import React, { Component } from 'react'
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import { db, auth } from '../firebase/config'
 
-class Register extends Component{
-    constructor(props){
+class Register extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             email: " ",
@@ -14,40 +14,40 @@ class Register extends Component{
             errorMensaje: " ",
         };
     }
-    componentDidMount(){
+    componentDidMount() {
         //console.log("Chequear si el usuario esta logueado en firebase");
 
-        auth.onAuthStateChanged( user=>{
+        auth.onAuthStateChanged(user => {
             console.log(user)
-            if(user){
+            if (user) {
                 this.props.navigation.navigate('Login')
             }
         })
     }
-    register(email, userName, password, bio, profileImage){
-        if (email && password && userName){
+    register(email, userName, password, bio, profileImage) {
+        if (email && password && userName) {
             auth.createUserWithEmailAndPassword(email, password)
-            .then(response=>{
-            db.collection('users').add({
-                owner: auth.currentUser.email,
-                userName: userName,
-                bio: bio || " ",
-                profileImage: profileImage || '',
-                createdAt: Date.now(),
-            })
-            this.props.navigation.navigate("Login")
-            })
-            .catch(error => {
-                this.setState({errorMensaje:error.mensaje});
-                console.error("Firebase authentication error:", error);
-            });
-        }else{
-            this.setState({errorMensaje: "Todos los campos obligatorios se deben completar"});
+                .then(response => {
+                    db.collection('users').add({
+                        owner: auth.currentUser.email,
+                        userName: userName,
+                        bio: bio || " ",
+                        profileImage: profileImage || '',
+                        createdAt: Date.now(),
+                    })
+                    this.props.navigation.navigate("Login")
+                })
+                .catch(error => {
+                    this.setState({ errorMensaje: error.mensaje });
+                    console.error("Firebase authentication error:", error);
+                });
+        } else {
+            this.setState({ errorMensaje: "Todos los campos obligatorios se deben completar" });
         }
     };
     render() {
         return (
-            <View> 
+            <View>
                 <View>
                     <Text>Registro</Text>
                     {this.state.errorMessage ? <Text>{this.state.errorMessage}</Text> : null}
@@ -82,7 +82,7 @@ class Register extends Component{
                         keyboardType='default'
                         value={this.state.profileImage}
                     />
-                    <TouchableOpacity onPress={()=> this.register(this.state.email,this.state.password,this.state.userName, this.state.bio, this.state.profileImage)}disabled={!this.state.email || !this.state.password || !this.state.userName}>
+                    <TouchableOpacity onPress={() => this.register(this.state.email, this.state.password, this.state.userName, this.state.bio, this.state.profileImage)} disabled={!this.state.email || !this.state.password || !this.state.userName}>
                         <Text>Registrarse</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
