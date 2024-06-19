@@ -47,30 +47,28 @@ componentDidMount(){
 
     render(){
         return(
-            <View style={styles.container}>
-                <View style={styles.formContainer}>
-                    <Text style={styles.title} >Login</Text>
-                    {this.state.errorMessage ? <Text style={styles.errorText}>{this.state.errorMessage}</Text> : null}
+            <View>
+                <View>
+                    <Text>Login</Text>
+                    {this.state.errorMessage ? <Text>{this.state.errorMessage}</Text> : null}
                     <TextInput
-                        style={styles.input}
                         onChangeText={(text)=>this.setState({email: text})}
                         placeholder='Email'
                         keyboardType='email-address'
                         value={this.state.email}
                         />
                     <TextInput
-                        style={styles.input}
                         onChangeText={(text)=>this.setState({password: text})}
                         placeholder='Password'
                         keyboardType='default'
                         secureTextEntry={true}
                         value={this.state.password}
                     />
-                    <TouchableOpacity style={styles.button} onPress={()=>this.login(this.state.email, this.state.password)}  disabled={!this.state.email || !this.state.password} >
-                        <Text style={styles.textButton}>Ingresar</Text>    
+                    <TouchableOpacity onPress={()=>this.login(this.state.email, this.state.password)}  disabled={!this.state.email || !this.state.password} >
+                        <Text >Ingresar</Text>    
                     </TouchableOpacity>
                     <TouchableOpacity onPress={ () => this.props.navigation.navigate('Register')}>
-                    <Text style={styles.registerText} >No tengo cuenta. Registrarme.</Text>
+                    <Text>No tengo cuenta. Registrarme.</Text>
                     </TouchableOpacity>
                 </View>
             </View>
