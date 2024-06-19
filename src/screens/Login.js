@@ -15,7 +15,7 @@ class Login extends Component {
 componentDidMount(){
     auth.onAuthStateChanged((user)=> {
         if (user){
-            this.props.navigation.navigate("TabNavigation");
+            this.props.navigation.navigate("TabNav");
         }
     })
 }
@@ -29,8 +29,7 @@ componentDidMount(){
 
                 //Cambiar los estados a vacío como están al inicio.
                 //Redirigir al usuario a la home del sitio.
-                this.props.navigation.navigate('TabNavigation')
-
+                this.props.navigation.navigate('TabNav')
             })
             .catch( error => {
                 //Cuando Firebase responde con un error.
@@ -39,7 +38,7 @@ componentDidMount(){
             }) 
         } else {
             this.setState({ errorMessage: 'Por favor, completa todos los campos.' });
-            //this.props.navigation.navigate('TabNavigation')
+            //this.props.navigation.navigate('TabNav')
         }
 
     }

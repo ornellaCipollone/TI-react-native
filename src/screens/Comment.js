@@ -1,6 +1,7 @@
 import { Text, View } from 'react-native'
 import React, { Component } from 'react'
 import { db, auth } from '../firebase/config'
+import firebase from 'firebase'
 
 
 class Comment extends Component {
