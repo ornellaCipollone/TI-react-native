@@ -1,11 +1,11 @@
 
 import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';import React, { Component } from 'react'
+import { NavigationContainer } from '@react-navigation/native';
+import React, { Component } from 'react'
 
 import Login from '../screens/Login'
 import Register from '../screens/Register'
 import TabNav from './TabNav'
-import { NavigationContainer } from '@react-navigation/native';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
