@@ -1,4 +1,7 @@
-import React, { Component } from 'react'
+
+import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';import React, { Component } from 'react'
+
 import Login from '../screens/Login'
 import Register from '../screens/Register'
 import TabNav from './TabNav'
@@ -16,6 +19,7 @@ export default class MainNav extends Component {
                 <Stack.Screen name="Login" component={ Login } options={ { headerShown: false } }/>
                 <Stack.Screen name="Register" component={ Register } options={ { headerShown: false } } />
                 <Stack.Screen name='tabnav' component={TabNav} />
+                <Stack.Screen name="SuPerfil" component={ SuPerfil } options={ { headerShown: false } }/>
             </Stack.Navigator>
         </NavigationContainer>
     )

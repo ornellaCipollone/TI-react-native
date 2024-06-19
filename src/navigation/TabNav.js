@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import { FontAwesome } from '@expo/vector-icons';
-const Tab = createBottomTabNavigator()
+import { StyleSheet, Text, View } from 'react-native';
 
+import Home from '../screens/Home';
+import MiPerfil from '../screens/MiPerfil'
+
+const Tab = createBottomTabNavigator()
 export default class TabNav extends Component {
   render() {
     return (
