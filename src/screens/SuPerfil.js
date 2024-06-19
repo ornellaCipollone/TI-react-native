@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { db, auth } from '../../firebase/config';
+import { db, auth } from '../firebase/config';
 import { TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList,Image, ScrollView } from 'react-native';
-import Post from '../../components/Post/Post';
+import Posteo from '../components/Posteo';
 
 class SuPerfil extends Component{
     constructor(props){
@@ -47,20 +47,20 @@ class SuPerfil extends Component{
 
         return(
             <ScrollView style={styles.container}>
-                <View style={styles.profileInfo}>
-                <Text style={styles.username}>{this.state.suInfo.userName}</Text>
-                <Text style={styles.bio}> Biografía:{this.state.suInfo.bio}</Text>
-                <Text style={styles.posts} >Cantidad de posts: {this.state.susPosts.length}</Text>
-                <Image style={styles.profileImage} source={{ uri: this.state.suInfo.profileImage }}/>
+                <View >
+                <Text >{this.state.suInfo.userName}</Text>
+                <Text > Biografía:{this.state.suInfo.bio}</Text>
+                <Text  >Cantidad de posts: {this.state.susPosts.length}</Text>
+                <Image  source={{ uri: this.state.suInfo.profileImage }}/>
                 </View> 
 
-                <Text style={styles.sectionTitle}>Posteos:</Text>
+                <Text >Posteos:</Text>
                 <FlatList
                     data={this.state.susPosts}
                     keyExtractor={(item) => item.id.toString()}
-                    renderItem={({ item }) => <Post dataPost={item} navigation={this.props.navigation} />}
+                    renderItem={({ item }) => <Posteo dataPost={item} navigation={this.props.navigation} />}
                 />
-                <Text onPress={() => this.props.navigation.navigate("TabNavigation")}>
+                <Text onPress={() => this.props.navigation.navigate("TabNav")}>
                 Volver a home
                 </Text>
             
