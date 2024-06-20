@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Camera } from "expo-camera";
-import { Text, StyleSheet, View, TouchableOpacity, Image } from "react-native";
+import { Text, View, TouchableOpacity, Image } from "react-native";
 import { storage } from "../firebase/config";
 
 class Camara extends Component {
@@ -63,33 +63,31 @@ class Camara extends Component {
       <>
         {this.state.permisos ? (
           this.state.showCamera ? (
-            <View style={styles.formContainer}>
-              <Camera
-                style={styles.camera}
+            <View >
+              <Camera  
                 type={Camera.Constants.Type.front}
-                ref={(metodosCamara) => (this.metodosCamara = metodosCamara)}
+                ref={metodosCamara => this.metodosCamara = metodosCamara}
               />
               <TouchableOpacity
-                style={styles.button}
+                
                 onPress={() => this.sacarFoto()}
               >
-                <Text style={styles.textButton}>Sacar foto</Text>
+                <Text >Sacar foto</Text>
               </TouchableOpacity>
             </View>
           ) : (
-            <View style={styles.formContainer}>
-              <Image style={styles.camera} source={{ uri: this.state.photo }} />
+            <View >
+              <Image  source={{ uri: this.state.photo }} />
               <TouchableOpacity
-                style={styles.button}
+              
                 onPress={() => this.aceptarFoto()}
               >
-                <Text style={styles.textButton}>Aceptar</Text>
+                <Text>Aceptar</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={styles.button}
                 onPress={() => this.rechazarFoto()}
               >
-                <Text style={styles.textButton}>Rechazar</Text>
+                <Text>Rechazar</Text>
               </TouchableOpacity>
             </View>
           )
@@ -100,5 +98,4 @@ class Camara extends Component {
     );
   }
 }
-
 export default Camara;
