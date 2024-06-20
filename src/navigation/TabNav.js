@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome } from "@expo/vector-icons";
-
+import { Octicons } from '@expo/vector-icons';
 
 import Home from "../screens/Home";
 import Buscador from "../screens/Buscador";
-import CrearPosteo from "../components/CrearPosteo";
+import CrearPosteo from "../screens/CrearPosteo";
 import MiPerfil from "../screens/MiPerfil";
 
 
@@ -33,7 +33,7 @@ export default class TabNav extends Component {
           }}
         />
         <Tab.Screen
-          name="Crear Posto"
+          name="Crear Posteo"
           component={CrearPosteo}
           options={{
             headerShown: false,

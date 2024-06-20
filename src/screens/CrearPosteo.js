@@ -1,6 +1,6 @@
 import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { Component } from 'react'
-import { Camera } from 'expo-camera'
+import Camara from "../components/Camara"
 import {db, auth} from '../firebase/config'
 
 class CrearPosteo extends Component {
@@ -27,7 +27,6 @@ class CrearPosteo extends Component {
             camara: true,
             texto: '',
             urlFoto: ''
-
         })
     })
     .catch( e => console.log(e)) 
@@ -45,7 +44,7 @@ class CrearPosteo extends Component {
       <View>
         {
             this.state.camara ?
-            <Camera onImageUpload = {(url)=> this.onImageUpload(url)}/>
+            <Camara onImageUpload = {(url)=> this.onImageUpload(url)}/>
             :
             <View>
                <Text>New Post</Text>
@@ -60,7 +59,6 @@ class CrearPosteo extends Component {
                <TouchableOpacity onPress={()=> this.crearPosteo()}>
                 <Text>Postear</Text>
                </TouchableOpacity>
-
             </View>
         }
       </View>

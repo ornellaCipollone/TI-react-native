@@ -40,7 +40,11 @@ export default class MainNav extends Component {
             component={EditarPerfil}
             options={{ headerShown: false }}
           />
-          <Stack.Screen name="TabNav" component={TabNav} />
+          <Stack.Screen 
+            name="TabNav" 
+            component={TabNav} 
+            options= {{ headerShown : false}}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
