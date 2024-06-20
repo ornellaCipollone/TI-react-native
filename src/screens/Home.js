@@ -1,4 +1,4 @@
-import { Text, View, TextInput, TouchableOpacity, StyleSheet, FlatList} from 'react-native'
+import { Text, View, TextInput, TouchableOpacity, StyleSheet, FlatList, ScrollView} from 'react-native'
 import React, { Component } from 'react'
 import { db, auth } from '../firebase/config'
 import Posteo from '../components/Posteo'
@@ -37,13 +37,13 @@ class Home extends Component {
               
     render() {
     return (
-        <View>
+        <ScrollView>
             <FlatList
                 data={this.state.posteos}
                 keyExtractor={ item => item.id.toString() }
                 renderItem={ ({item}) => <Posteo dataPost={item}/> }
             />
-        </View>
+        </ScrollView>
     )
   }
 }
