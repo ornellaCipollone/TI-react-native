@@ -46,7 +46,7 @@ class SuPerfil extends Component{
         console.log(this.state.susPosts)
 
         return(
-            <ScrollView style={styles.container}>
+            <ScrollView >
                 <View >
                 <Text >{this.state.suInfo.userName}</Text>
                 <Text > Biografía:{this.state.suInfo.bio}</Text>

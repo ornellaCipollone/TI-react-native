@@ -1,6 +1,7 @@
 import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { Component } from 'react'
 import { Camera } from 'expo-camera'
+import {db, auth} from '../firebase/config'
 
 class CrearPosteo extends Component {
   constructor(props){
