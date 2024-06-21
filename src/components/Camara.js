@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Camera } from "expo-camera";
-import { Text, View, TouchableOpacity, Image } from "react-native";
+import { Camera } from "expo-camera/legacy";
+import { Text, StyleSheet, View, TouchableOpacity, Image } from "react-native";
 import { storage } from "../firebase/config";
 
 class Camara extends Component {
@@ -58,44 +58,82 @@ class Camara extends Component {
   }
 
   render() {
-    console.log(this.state.photo);
     return (
       <>
         {this.state.permisos ? (
           this.state.showCamera ? (
-            <View >
+            <View style={styles.formContainer}>
               <Camera
+                style={styles.camera}
                 type={Camera.Constants.Type.front}
-                ref={metodosCamara => this.metodosCamara = metodosCamara}
+                ref={(metodosCamara) => (this.metodosCamara = metodosCamara)}
               />
               <TouchableOpacity
-                
+                style={styles.button}
                 onPress={() => this.sacarFoto()}
               >
-                <Text >Sacar foto</Text>
+                <Text style={styles.textButton}>Sacar foto</Text>
               </TouchableOpacity>
             </View>
           ) : (
-            <View >
-              <Image  source={{ uri: this.state.photo }} />
+            <View style={styles.formContainer}>
+              <Image style={styles.camera} source={{ uri: this.state.photo }} />
               <TouchableOpacity
-              
+                style={styles.button}
                 onPress={() => this.aceptarFoto()}
               >
-                <Text>Aceptar</Text>
+                <Text style={styles.textButton}>Aceptar</Text>
               </TouchableOpacity>
               <TouchableOpacity
+                style={styles.button}
                 onPress={() => this.rechazarFoto()}
               >
-                <Text>Rechazar</Text>
+                <Text style={styles.textButton}>Rechazar</Text>
               </TouchableOpacity>
             </View>
           )
         ) : (
-          <Text>El acceso a la cámara está deshabilitado</Text>
+          <Text>No me diste los permisos de la camara</Text>
         )}
       </>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  formContainer: {
+    height: `60vh`,
+    widht: `100vw`,
+  },
+  camera: {
+    widht: "100%",
+    height: "100%",
+  },
+  input: {
+    height: 40,
+    paddingVertical: 15,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderStyle: "solid",
+    borderRadius: 6,
+    marginVertical: 10,
+  },
+  button: {
+    backgroundColor: "#0095f6",
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderRadius: 5,
+    marginTop: 10,
+    borderColor: "#0077c2",
+    height: 40,
+    justifyContent: "center",
+  },
+  textButton: {
+    color: "#fff",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+});
+
 export default Camara;

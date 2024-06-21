@@ -56,45 +56,45 @@ class Register extends Component {
   }
   render() {
     return (
-      <View>
-        <View>
-          <Text>Registro</Text>
+      <View style={styles.container}>
+        <View style={styles.formContainer}>
+          <Text style={styles.title}> Registro</Text>
           {this.state.errorMessage ? (
-            <Text>{this.state.errorMessage}</Text>
+            <Text style={styles.errorText}> {this.state.errorMessage}</Text>
           ) : null}
-          <TextInput
-            onChangeText={(text) => this.setState({ email: text })}
+          <TextInput style={styles.input}
+            onChangeText={(text) => this.setState({ email:text })}
             placeholder="Email"
             keyboardType="email-address"
             value={this.state.email}
           />
-          <TextInput
-            onChangeText={(text) => this.setState({ userName: text })}
+          <TextInput style={styles.input}
+            onChangeText={(text) => this.setState({ userName:text })}
             placeholder="Nombre de usuario"
             keyboardType="default"
             value={this.state.userName}
           />
-          <TextInput
-            onChangeText={(text) => this.setState({ password: text })}
+          <TextInput style={styles.input}
+            onChangeText={(text) => this.setState({ password:text })}
             placeholder="Contraseña"
             keyboardType="default"
             secureTextEntry={true}
             value={this.state.password}
           />
-          <TextInput
+          <TextInput style={styles.input}
             onChangeText={(text) => this.setState({ bio: text })}
             placeholder="Mini Bio (opcional)"
             keyboardType="default"
             value={this.state.bio}
           />
-          <TextInput
+          <TextInput style={styles.input}
             onChangeText={(text) => this.setState({ profileImage: text })}
             placeholder="URL de la foto de perfil (opcional)"
             keyboardType="default"
             value={this.state.profileImage}
           />
-          
-          <TouchableOpacity
+
+          <TouchableOpacity style={styles.button}
             onPress={() =>
               this.register(
                 this.state.email,
@@ -108,17 +108,66 @@ class Register extends Component {
               !this.state.email || !this.state.password || !this.state.userName
             }
           >
-            <Text>Registrarse</Text>
-          </TouchableOpacity>
-          
-          <TouchableOpacity
+            <Text style={styles.textButton}>Registrarse</Text>
+          </TouchableOpacity >
+
+          <TouchableOpacity 
             onPress={() => this.props.navigation.navigate("Login")}
           >
-            <Text>¿Ya tienes una cuenta? Inicia sesión</Text>
+            <Text style={styles.loginText}>¿Ya tienes una cuenta? Inicia sesión</Text>
           </TouchableOpacity>
         </View>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  formContainer: {
+    paddingHorizontal: 40,
+    width: '100%',
+  },
+  title: {
+    fontSize: 36,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  input: {
+    height: 40,
+    paddingHorizontal: 10,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: '#dbdbdb',
+    borderRadius: 5,
+  },
+  button: {
+    borderColor: '#0089e0',
+    backgroundColor: '#0095f6',
+    paddingVertical: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  textButton: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  loginText: {
+    marginTop: 20,
+    textAlign: 'center',
+    color: '#003569',
+    fontWeight: 'bold',
+  },
+  errorText: {
+    color: 'red',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+});
 export default Register;

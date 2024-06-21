@@ -1,69 +1,112 @@
-import { Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React, { Component } from 'react'
-import Camara from "../components/Camara"
-import {db, auth} from '../firebase/config'
+import React, { Component } from "react";
+import { db, auth } from "../firebase/config";
+import {
+  TextInput,
+  TouchableOpacity,
+  View,
+  Text,
+  StyleSheet,
+} from "react-native";
+import Camara from "../components/Camara";
 
 class CrearPosteo extends Component {
-  constructor(props){
-    super(props)
+  constructor() {
+    super();
     this.state = {
-        camara: true,
-        texto: '',
-        urlFoto: ''
-    }
+      textoPost: "",
+      mostrarCamara: true,
+      url: "",
+    };
   }
-  
-  crearPosteo(){
-    db.collection('posts').add({
+
+  crearPost() {
+    //Crear la colección Users
+    db.collection("posts")
+      .add({
         owner: auth.currentUser.email,
-        texto: this.state.texto,
+        textoPost: this.state.textoPost,
         createdAt: Date.now(),
         likes: [],
         comentarios: [],
-        foto: this.state.urlFoto
-    })
-    .then(()=>{
+        foto: this.state.url,
+      })
+      .then(() => {
+        console.log("Posteo correcto");
+        // Después de crear el post, volver a mostrar la cámara
         this.setState({
-            camara: true,
-            texto: '',
-            urlFoto: ''
-        })
-    })
-    .catch( e => console.log(e)) 
+          mostrarCamara: true,
+          textoPost: "", // Limpiar el texto después de hacer el post
+          url: "", // Limpiar la URL después de hacer el post
+        });
+      })
+      .catch((e) => console.log(e));
   }
-
-  onImageUpload(url){
+  onImageUpload(url) {
     this.setState({
-        camara: false,
-        urlFoto: url
-    })
+      mostrarCamara: false,
+      url: url,
+    });
   }
 
-    render() {
+  render() {
     return (
-      <View>
-        {
-            this.state.camara ?
-            <Camara onImageUpload = {(url)=> this.onImageUpload(url)}/>
-            :
-            <View>
-               <Text>New Post</Text>
-               
-               <TextInput
-                onChangeText={(text)=> this.setState({texto: text})}
-                placeholder='Añade una descripción'
-                keyboardType='default'
-                value={this.state.texto}
-               /> 
-
-               <TouchableOpacity onPress={()=> this.crearPosteo()}>
-                <Text>Postear</Text>
-               </TouchableOpacity>
-            </View>
-        }
+      <View style={styles.formContainer}>
+        {this.state.mostrarCamara ? (
+          <Camara onImageUpload={(url) => this.onImageUpload(url)} />
+        ) : (
+          <View>
+            <Text style={styles.title}>New Post</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => this.setState({ textoPost: text })}
+              placeholder="Write a caption..."
+              keyboardType="default"
+              value={this.state.textoPost}
+            />
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => this.crearPost()}
+            >
+              <Text style={styles.textButton}>Post</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
-    )
+    );
   }
 }
 
-export default CrearPosteo
+const styles = StyleSheet.create({
+  formContainer: {
+    paddingHorizontal: 20,
+    marginTop: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  input: {
+    height: 40,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
+    paddingLeft: 10,
+    marginBottom: 20,
+  },
+  button: {
+    backgroundColor: "#3498db",
+    padding: 15,
+    alignItems: "center",
+    borderRadius: 8,
+  },
+  textButton: {
+    color: "#fff",
+    fontWeight: "bold",
+  },
+  camaraBody: {
+    height: 120,
+  },
+});
+
+export default CrearPosteo;
