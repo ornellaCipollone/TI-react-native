@@ -64,7 +64,7 @@ class Camara extends Component {
         {this.state.permisos ? (
           this.state.showCamera ? (
             <View >
-              <Camera  
+              <Camera
                 type={Camera.Constants.Type.front}
                 ref={metodosCamara => this.metodosCamara = metodosCamara}
               />

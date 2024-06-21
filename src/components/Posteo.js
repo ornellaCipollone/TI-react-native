@@ -79,12 +79,12 @@ class Posteo extends Component {
                 {
                     this.state.like ?
                         <TouchableOpacity onPress={() => this.sacarLike()}>
-                            <FontAwesome name='heart' color='red' size={20} />
+                
                         </TouchableOpacity>
 
                         :
                         <TouchableOpacity onPress={() => this.likear()}>
-                            <FontAwesome name='heart-o' color='black' size={20} />
+                            
                         </TouchableOpacity>
 
                 }
@@ -96,21 +96,21 @@ class Posteo extends Component {
                 
                 <TouchableOpacity onPress={() => this.props.navigation.navigate(
                     'Comment', { id: this.props.dataPost.id })}>
-                    <FontAwesome  name='comment' color='#3498db' size={20} />
+                    
                 </TouchableOpacity>
                 
                 
                 {this.state.mostrarMensaje ? 
                 null : (
                 <TouchableOpacity onPress={this.borrarPosteo}>
-                    <FontAwesome name="trash" size={20} color="red" />
+                 
                 </TouchableOpacity>
                 )}
                 
                 {this.state.mostrarMensaje ? 
                 (
                     <View>
-                    <FontAwesome name="exclamation-circle" size={15} color="red" />
+                    
                     <Text>No tienes permiso para eliminar este post.</Text>
                     </View>
                 ):
