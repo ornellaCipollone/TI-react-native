@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { db, auth } from "../firebase/config";
-import { TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList, Image,ScrollView} from "react-native";
+import { TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList, Image, ScrollView } from "react-native";
 import Posteo from "../components/Posteo";
 
 class SuPerfil extends Component {
@@ -52,28 +52,81 @@ class SuPerfil extends Component {
     console.log(this.state.susPosts);
 
     return (
-      <ScrollView>
-        <View>
-          <Text>{this.state.suInfo.userName}</Text>
-          <Text> Biografía:{this.state.suInfo.bio}</Text>
-          <Text>Cantidad de posts: {this.state.susPosts.length}</Text>
-          <Image source={{ uri: this.state.suInfo.profileImage }} />
+      <ScrollView style={styles.container}>
+        <View style={styles.profileInfo}>
+          <Image style={styles.profileImage} source={{ uri: this.state.suInfo.profileImage || 'https://via.placeholder.com/150' }} />
+          <Text style={styles.username}>{this.state.suInfo.userName}</Text>
+          <Text style={styles.bio}>Biografía: {this.state.suInfo.bio}</Text>
+          <Text style={styles.postsCount}>Cantidad de posts: {this.state.susPosts.length}</Text>
         </View>
 
-        <Text>Posteos:</Text>
+        <Text style={styles.sectionTitle}>Posteos:</Text>
         <FlatList
+          style={styles.postsList}
           data={this.state.susPosts}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <Posteo dataPost={item} navigation={this.props.navigation} />
           )}
         />
-        <Text onPress={() => this.props.navigation.navigate("TabNav")}>
-          Volver a Home
-        </Text>
+
+        <TouchableOpacity style={styles.backButton} onPress={() => this.props.navigation.navigate("TabNav")}>
+          <Text style={styles.backButtonText}>Volver a Home</Text>
+        </TouchableOpacity>
       </ScrollView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#fff',
+    padding: 20,
+  },
+  profileInfo: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  profileImage: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    marginBottom: 10,
+  },
+  username: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  bio: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 5,
+  },
+  postsCount: {
+    fontSize: 16,
+    marginBottom: 15,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    marginLeft: 45,
+  },
+  postsList: {
+    marginTop: 10,
+  },
+  backButton: {
+    backgroundColor: '#007BFF',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  backButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+});
 
 export default SuPerfil;
