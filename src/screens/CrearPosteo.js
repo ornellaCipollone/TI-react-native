@@ -32,6 +32,7 @@ class CrearPosteo extends Component {
       })
       .then(() => {
         console.log("Posteo correcto");
+        this.props.navigation.navigate('Home')
         // Después de crear el post, volver a mostrar la cámara
         this.setState({
           mostrarCamara: true,

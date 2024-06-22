@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-const Stack = createNativeStackNavigator();
 
 import Login from "../screens/Login";
 import Register from "../screens/Register";
@@ -10,43 +9,19 @@ import SuPerfil from "../screens/SuPerfil";
 import EditarPerfil from "../screens/EditarPerfil";
 import TabNav from "./TabNav";
 
-export default class MainNav extends Component {
-  render() {
-    return (
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Register"
-            component={Register}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Login"
-            component={Login}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Comment"
-            component={Comment}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="SuPerfil"
-            component={SuPerfil}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="EditarPerfil"
-            component={EditarPerfil}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen 
-            name="TabNav" 
-            component={TabNav} 
-            options= {{ headerShown : false}}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
-  }
+const Stack = createNativeStackNavigator();
+
+export default function MainNav() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Comment" component={Comment} />
+        <Stack.Screen name="SuPerfil" component={SuPerfil} />
+        <Stack.Screen name="EditarPerfil" component={EditarPerfil} />
+        <Stack.Screen name="TabNav" component={TabNav} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
