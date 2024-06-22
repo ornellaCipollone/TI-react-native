@@ -23,6 +23,7 @@ class CrearPosteo extends Component {
     //Crear la colección Users
     db.collection("posts")
       .add({
+        
         owner: auth.currentUser.email,
         textoPost: this.state.textoPost,
         createdAt: Date.now(),
