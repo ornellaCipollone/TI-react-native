@@ -128,34 +128,6 @@ class Posteo extends Component {
             {this.state.cantidadComentarios} Comentarios
           </Text>
 
-<<<<<<< HEAD
-                <Text>{this.state.cantidadLikes} Likes</Text>
-                
-                <Text>{this.state.cantidadComentarios} Comentarios</Text>
-                
-                <TouchableOpacity onPress={() => this.props.navigation.navigate(
-                    'Comment', { id: this.props.dataPost.id })}>
-                    
-                </TouchableOpacity>
-                
-                
-                {this.state.mostrarMensaje ? 
-                null : (
-                <TouchableOpacity onPress={this.borrarPosteo}>
-                 
-                </TouchableOpacity>
-                )}
-                
-                {this.state.mostrarMensaje ? 
-                (
-                    <View>
-                    
-                    <Text>No tienes permiso para eliminar este post.</Text>
-                    </View>
-                ):
-                null}
-                
-=======
           <TouchableOpacity
             style={styles.trashCount}
             onPress={() =>
@@ -179,7 +151,6 @@ class Posteo extends Component {
               <Text style={styles.errorMessage}>
                 No tienes permiso para eliminar este post.
               </Text>
->>>>>>> 33b890217afc2d62071f2a432248f98074f1a5d6
             </View>
           ) : null}
         </View>
