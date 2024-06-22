@@ -1,4 +1,4 @@
-import MainNav from '../my-app/src/navigation/MainNav';
+import MainNav from '../TI-react-native/src/navigation/MainNav';
 
 export default function App() {
   return (
