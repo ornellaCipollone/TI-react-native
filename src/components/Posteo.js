@@ -84,7 +84,7 @@ class Posteo extends Component {
     return (
       <View style={styles.postContainer}>
         <View style={styles.userInfo}>
-          <TouchableOpacity
+          <TouchableOpacity //ir al perfil del usuario
             onPress={() =>
               this.props.navigation.navigate("SuPerfil", {
                 mailUser: this.props.dataPost.data.owner,
@@ -95,6 +95,7 @@ class Posteo extends Component {
               Posteo de: {this.props.dataPost.data.owner}
             </Text>
           </TouchableOpacity>
+
           <Image
             style={styles.camera}
             source={{ uri: this.props.dataPost.data.foto }}
@@ -129,9 +130,9 @@ class Posteo extends Component {
           </Text>
 
           <TouchableOpacity
-            style={styles.trashCount}
+            style={styles.commentButton}
             onPress={() =>
-              this.props.navigation.navigate("Comment", {
+              navigation.navigate("Comment", {
                 id: this.props.dataPost.id,
               })
             }
@@ -140,7 +141,10 @@ class Posteo extends Component {
           </TouchableOpacity>
 
           {this.state.mostrarMensaje ? null : (
-            <TouchableOpacity onPress={this.borrarPosteo}>
+            <TouchableOpacity
+              style={styles.trashCount}
+              onPress={this.borrarPosteo}
+            >
               <FontAwesome name="trash" size={20} color="red" />
             </TouchableOpacity>
           )}

@@ -10,7 +10,8 @@ import MiPerfil from "../screens/MiPerfil";
 
 
 const Tab = createBottomTabNavigator()
-export default class TabNav extends Component {
+
+class TabNav extends Component {
   render() {
     return (
       <Tab.Navigator>
@@ -52,3 +53,5 @@ export default class TabNav extends Component {
     );
   }
 }
+
+export default TabNav
