@@ -41,7 +41,7 @@ class Home extends Component {
             <FlatList
                 data={this.state.posteos}
                 keyExtractor={ item => item.id.toString() }
-                renderItem={ ({item}) => <Posteo navigation ={this.props.navigation} dataPost={item}/> }
+                renderItem={ ({item}) => <Posteo navigation={this.props.navigation} dataPost={item}/> }
             />
         </ScrollView>
     )

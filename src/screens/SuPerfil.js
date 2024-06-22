@@ -27,7 +27,7 @@ class SuPerfil extends Component {
         docs.forEach((doc) =>
           posts.push({
             id: doc.id,
-            datos: doc.data(),
+            data: doc.data(),
           })
         );
         this.setState({
