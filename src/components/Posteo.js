@@ -1,11 +1,4 @@
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  TextInput,
-} from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React, { Component } from "react";
 import firebase from "firebase";
 import { db, auth } from "../firebase/config";
@@ -86,10 +79,12 @@ class Posteo extends Component {
         <View style={styles.userInfo}>
           <TouchableOpacity //ir al perfil del usuario
             onPress={() =>
-              this.props.navigation.navigate("SuPerfil", {
+              this.props.navigation.navigate('SuPerfil', {
                 mailUser: this.props.dataPost.data.owner,
+                
               })
             }
+
           >
             <Text style={styles.username}>
               Posteo de: {this.props.dataPost.data.owner}
