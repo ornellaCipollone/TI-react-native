@@ -79,10 +79,12 @@ class Posteo extends Component {
         <View style={styles.userInfo}>
           <TouchableOpacity
             onPress={() =>
-              this.props.navigation.navigate("SuPerfil", {
+              this.props.navigation.navigate('SuPerfil', {
                 mailUser: this.props.dataPost.data.owner,
+                
               })
             }
+
           >
             <Text style={styles.username}>
               Posteo de: {this.props.dataPost.data.owner}

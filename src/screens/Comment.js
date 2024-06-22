@@ -57,8 +57,7 @@ class Comment extends Component {
                         onChangeText={text => this.setState({ NuevoComentario: text })}
                         keyboardType='default'
                         placeholder='Agrega un comentario'
-                        value={this.state.newComment}
-
+                        value={this.state.NuevoComentario}
                     />
                     <TouchableOpacity onPress={() => this.agregarComentario(this.state.id, this.state.NuevoComentario)}>
                         <Text style={styles.commentButtonText}>Comentar</Text>
@@ -74,50 +73,50 @@ class Comment extends Component {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      padding: 20,
-      backgroundColor: '#FFFFFF',
+        flex: 1,
+        padding: 20,
+        backgroundColor: '#FFFFFF',
     },
     commentContainer: {
-      borderBottomWidth: 1,
-      borderBottomColor: '#CCCCCC',
-      paddingBottom: 10,
-      marginBottom: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#CCCCCC',
+        paddingBottom: 10,
+        marginBottom: 10,
     },
     ownerText: {
-      fontWeight: 'bold',
-      marginBottom: 5,
+        fontWeight: 'bold',
+        marginBottom: 5,
     },
     commentText: {
-      color: '#333333',
+        color: '#333333',
     },
     inputContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginTop: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 20,
     },
     input: {
-      flex: 1,
-      borderWidth: 1,
-      borderColor: '#CCCCCC',
-      padding: 10,
-      marginRight: 10,
+        flex: 1,
+        borderWidth: 1,
+        borderColor: '#CCCCCC',
+        padding: 10,
+        marginRight: 10,
     },
     commentButton: {
-      padding: 10,
-      backgroundColor: '#3897f0',
-      borderRadius: 5,
+        padding: 10,
+        backgroundColor: '#3897f0',
+        borderRadius: 5,
     },
     commentButtonText: {
-      color: '#FFFFFF',
-      textAlign: 'center',
+        color: '#FFFFFF',
+        textAlign: 'center',
     },
     goBackText: {
-      marginTop: 20,
-      color: '#black',
-      textDecorationLine: 'underline',
+        marginTop: 20,
+        color: '#black',
+        textDecorationLine: 'underline',
     },
-  });
+});
 
 export default Comment
