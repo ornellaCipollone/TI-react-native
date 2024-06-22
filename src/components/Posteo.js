@@ -1,11 +1,4 @@
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  TextInput,
-} from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React, { Component } from "react";
 import firebase from "firebase";
 import { db, auth } from "../firebase/config";
