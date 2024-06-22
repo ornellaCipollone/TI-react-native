@@ -1,24 +1,24 @@
-import { Text, View, StyleSheet, TextInput, FlatList, TouchableOpacity } from 'react-native'
-import React, { Component } from 'react'
-import { db, auth } from '../firebase/config'
-import firebase from 'firebase'
-
+import React, { Component } from 'react';
+import { TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList } from 'react-native';
+import { db, auth } from '../firebase/config';
+import firebase from 'firebase';
 
 class Comment extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             NuevoComentario: "",
             id: "",
             data: {},
-        }
+        };
     }
+
     componentDidMount() {
         db.collection("posts")
             .doc(this.props.route.params.id)
             .onSnapshot(doc => {
-                this.setState({ id: doc.id, data: doc.data() })
-            })
+                this.setState({ id: doc.id, data: doc.data() });
+            });
     }
 
     agregarComentario(id, comentario) {
@@ -30,44 +30,51 @@ class Comment extends Component {
                     createdAt: Date.now(),
                     comentario: comentario
                 })
-            })
+            });
+        this.setState({ NuevoComentario: '' }); // Limpiar el campo de texto después de agregar un comentario
     }
 
     render() {
         return (
             <View style={styles.container}>
                 {this.state.data.comentarios && this.state.data.comentarios.length > 0 ? (
-                    <View>
-                        <FlatList
-                            data={this.state.data.comentarios}
-                            keyExtractor={item => item.createdAt.toString()}
-                            renderItem={({ item }) => (
-                                <View style={styles.commentContainer}>
-                                    <Text style={styles.ownerText}>{item.owner}:</Text>
-                                    <Text style={styles.commentText}>{item.comentario}</Text>
-                                </View>
-                            )}
-                        />
-                    </View>
+                    <FlatList
+                        data={this.state.data.comentarios}
+                        keyExtractor={item => item.createdAt.toString()}
+                        renderItem={({ item }) => (
+                            <View style={styles.commentContainer}>
+                                <Text style={styles.ownerText}>{item.owner}:</Text>
+                                <Text style={styles.commentText}>{item.comentario}</Text>
+                            </View>
+                        )}
+                    />
                 ) : (
-                    <Text>No hay comentarios aún.</Text>
+                    <Text style={styles.noCommentsText}>No hay comentarios aún.</Text>
                 )}
                 <View style={styles.inputContainer}>
                     <TextInput
+                        style={styles.input}
                         onChangeText={text => this.setState({ NuevoComentario: text })}
                         keyboardType='default'
                         placeholder='Agrega un comentario'
                         value={this.state.NuevoComentario}
                     />
-                    <TouchableOpacity onPress={() => this.agregarComentario(this.state.id, this.state.NuevoComentario)}>
+                    <TouchableOpacity
+                        style={styles.commentButton}
+                        onPress={() => this.agregarComentario(this.state.id, this.state.NuevoComentario)}
+                        disabled={!this.state.NuevoComentario} // Desactivar el botón si el campo de comentario está vacío
+                    >
                         <Text style={styles.commentButtonText}>Comentar</Text>
                     </TouchableOpacity>
                 </View>
-                <Text onPress={() => this.props.navigation.navigate("TabNav")}>
+                <Text
+                    style={styles.goBackText}
+                    onPress={() => this.props.navigation.navigate("TabNav")}
+                >
                     Volver a home
                 </Text>
             </View>
-        )
+        );
     }
 }
 
@@ -86,9 +93,15 @@ const styles = StyleSheet.create({
     ownerText: {
         fontWeight: 'bold',
         marginBottom: 5,
+        color: '#007BFF', // Color azul para resaltar
     },
     commentText: {
         color: '#333333',
+    },
+    noCommentsText: {
+        textAlign: 'center',
+        marginVertical: 20,
+        color: '#666666',
     },
     inputContainer: {
         flexDirection: 'row',
@@ -100,6 +113,7 @@ const styles = StyleSheet.create({
         flex: 1,
         borderWidth: 1,
         borderColor: '#CCCCCC',
+        borderRadius: 5,
         padding: 10,
         marginRight: 10,
     },
@@ -111,12 +125,14 @@ const styles = StyleSheet.create({
     commentButtonText: {
         color: '#FFFFFF',
         textAlign: 'center',
+        fontWeight: 'bold',
     },
     goBackText: {
         marginTop: 20,
-        color: '#black',
+        color: '#007BFF',
         textDecorationLine: 'underline',
+        textAlign: 'center',
     },
 });
 
-export default Comment
+export default Comment;
