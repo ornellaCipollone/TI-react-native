@@ -127,7 +127,7 @@ class Posteo extends Component {
           <TouchableOpacity
             style={styles.commentButton}
             onPress={() =>
-              navigation.navigate("Comment", {
+              this.props.navigation.navigate("Comment", {
                 id: this.props.dataPost.id,
               })
             }
