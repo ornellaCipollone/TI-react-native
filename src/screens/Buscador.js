@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     searchButton: {
-        backgroundColor: '#007BFF',
+        backgroundColor: 'grey',
         padding: 10,
         borderRadius: 5,
     },
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     resultItem: {
-        backgroundColor: '#f8f8f8',
+        backgroundColor: 'grey',
         borderRadius: 5,
         marginVertical: 5,
         padding: 10,
