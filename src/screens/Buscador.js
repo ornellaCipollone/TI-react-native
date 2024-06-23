@@ -107,7 +107,7 @@ class Buscador extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#fff',
+        backgroundColor: '#EEEEEE',
         padding: 20,
     },
     searchContainer: {

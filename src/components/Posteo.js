@@ -210,6 +210,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginTop: 10,
+    justifyContent: "space-between"
   },
   commentCount: {
     fontSize: 14,
@@ -217,9 +218,10 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   trashCount: {
-    position: "absolute",
-    bottom: 5,
-    right: 5,
+    marginLeft: 'auto',
+    //position: "absolute",
+    //bottom: 5,
+    //right: 5,
   },
   errorMessageContainer: {
     flexDirection: "row",

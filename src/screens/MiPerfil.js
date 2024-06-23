@@ -40,7 +40,7 @@ class MiPerfil extends Component {
                     docs.forEach(doc => {
                         this.setState({
                             id: doc.id,
-                            infoUser: doc.data
+                            infoUser: doc.data()
                         })
                     })
 
@@ -63,7 +63,7 @@ class MiPerfil extends Component {
                     <Text style={styles.username}>Bienvenido {this.state.infoUser.userName}</Text>
                     <Text style={styles.bio}>Biografía: {this.state.infoUser.bio}</Text>
                     <Text style={styles.email}>Mail: {auth.currentUser.email}</Text>
-                    <Image style={styles.profileImage} source={{ uri: this.state.infoUser.profileImage }} />
+                    <Image style={styles.profileImage} source={{ uri: this.state.infoUser.profileImage || 'https://via.placeholder.com/150'}} />
 
                 </View>
 
@@ -71,7 +71,7 @@ class MiPerfil extends Component {
                 <FlatList
                     data={this.state.posteos}
                     keyExtractor={(item) => item.id.toString()}
-                    renderItem={({ item }) => <Posteo dataPost={item} />}
+                    renderItem={({ item }) => <Posteo navigation={this.props.navigation} dataPost={item} />}
                 />
 
                 <TouchableOpacity style={styles.logoutButton} onPress={() => this.signOut()}>
@@ -84,7 +84,7 @@ class MiPerfil extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#fff',
+        backgroundColor: '#EEEEEE',
         padding: 20,
     },
     profileInfo: {
