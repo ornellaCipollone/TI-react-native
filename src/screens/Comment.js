@@ -67,12 +67,9 @@ class Comment extends Component {
                         <Text style={styles.commentButtonText}>Comentar</Text>
                     </TouchableOpacity>
                 </View>
-                <Text
-                    style={styles.goBackText}
-                    onPress={() => this.props.navigation.navigate("TabNav")}
-                >
-                    Volver a home
-                </Text>
+                <TouchableOpacity style={styles.backButton} onPress={() => this.props.navigation.navigate("TabNav")}>
+          <Text style={styles.backButtonText}>Volver a Home</Text>
+        </TouchableOpacity>
             </View>
         );
     }
@@ -127,12 +124,17 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
     },
-    goBackText: {
+    backButton: {
+        backgroundColor: 'grey',
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
         marginTop: 20,
-        color: '#007BFF',
-        textDecorationLine: 'underline',
-        textAlign: 'center',
-    },
+      },
+    backButtonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+      },
 });
 
 export default Comment;
