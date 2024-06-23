@@ -93,7 +93,11 @@ class Camara extends Component {
             </View>
           )
         ) : (
-          <Text>No me diste los permisos de la camara</Text>
+          <View style={styles.permissionContainer}>
+            <Text style={styles.permissionText}>
+              Los permisos de la cámara no están habilitados
+            </Text>
+          </View>
         )}
       </>
     );
@@ -132,6 +136,17 @@ const styles = StyleSheet.create({
   textButton: {
     color: "#fff",
     fontWeight: "bold",
+    textAlign: "center",
+  },
+  permissionContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+  },
+  permissionText: {
+    fontSize: 16,
+    color: "red",
     textAlign: "center",
   },
 });
