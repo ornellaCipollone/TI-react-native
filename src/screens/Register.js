@@ -12,12 +12,12 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: " ",
-      userName: " ",
-      password: " ",
-      bio: " ",
-      profileImage: " ",
-      errorMessage: " ",
+      email: "",
+      userName: "",
+      password: "",
+      bio: "",
+      profileImage: "",
+      errorMessage: "",
     };
   }
   componentDidMount() {
@@ -75,8 +75,8 @@ class Register extends Component {
             value={this.state.userName}
           />
           <TextInput style={styles.input}
-            onChangeText={(text) => this.setState({ password:text })}
-            placeholder="Contraseña"
+            onChangeText={(text) => this.setState({ password: text })}
+            placeholder= 'Password'
             keyboardType="default"
             secureTextEntry={true}
             value={this.state.password}
